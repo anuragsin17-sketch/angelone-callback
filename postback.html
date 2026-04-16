@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AngelOne Postback</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngelOne API Postback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success {
+            color: #22c55e;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .info {
+            color: #666;
+            margin: 15px 0;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>AngelOne API Postback</h1>
-    <p>Postback received successfully!</p>
+    <div class="container">
+        <div class="success">📡 AngelOne API Postback Endpoint</div>
+        <p class="info">This is the postback URL for AngelOne API webhooks and notifications.</p>
+        <p class="info">This endpoint receives real-time updates from AngelOne servers.</p>
+        
+        <div class="code">
+            <strong>Postback URL:</strong><br>
+            https://saurabh17-zakcloub.github.io/angelone-callback/postback.html
+        </div>
+        
+        <div class="info">
+            <h3>Postback Features:</h3>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Order status updates</li>
+                <li>Position updates</li>
+                <li>Market data notifications</li>
+                <li>Account balance changes</li>
+            </ul>
+        </div>
+        
+        <p class="info">
+            <small>This endpoint is ready to receive AngelOne API postback notifications.</small>
+        </p>
+    </div>
+
+    <script>
+        // Handle POST requests (for postback data)
+        if (window.location.search) {
+            const urlParams = new URLSearchParams(window.location.search);
+            console.log('Postback Parameters:', Object.fromEntries(urlParams));
+            
+            // Display postback data if any
+            const debugDiv = document.createElement('div');
+            debugDiv.className = 'code';
+            debugDiv.innerHTML = '<strong>Postback Data:</strong><br>' + 
+                                JSON.stringify(Object.fromEntries(urlParams), null, 2);
+            document.querySelector('.container').appendChild(debugDiv);
+        }
+        
+        // Log page load for monitoring
+        console.log('Postback endpoint accessed at:', new Date().toISOString());
+        
+        // Handle potential postback data in hash
+        if (window.location.hash) {
+            console.log('Hash data:', window.location.hash);
+        }
+    </script>
 </body>
 </html>

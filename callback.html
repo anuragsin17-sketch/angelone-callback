@@ -1,25 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AngelOne Callback</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngelOne API Callback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success {
+            color: #22c55e;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .info {
+            color: #666;
+            margin: 15px 0;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>AngelOne API Callback</h1>
-    <p>Authentication successful!</p>
+    <div class="container">
+        <div class="success">✅ AngelOne API Callback Successful</div>
+        <p class="info">This is the callback URL for AngelOne API integration.</p>
+        <p class="info">Your authentication was successful and you can now close this window.</p>
+        
+        <div class="code">
+            <strong>Callback URL:</strong><br>
+            https://saurabh17-zakcloub.github.io/angelone-callback/callback.html
+        </div>
+        
+        <p class="info">
+            <small>This page confirms that the AngelOne API callback is working correctly.</small>
+        </p>
+    </div>
+
     <script>
-        // Log the callback parameters
-        console.log('Callback received:', window.location.search);
+        // Extract any URL parameters for debugging
+        const urlParams = new URLSearchParams(window.location.search);
+        const authCode = urlParams.get('code');
+        const state = urlParams.get('state');
         
-        // Display parameters on page
-        const params = new URLSearchParams(window.location.search);
-        const paramsDiv = document.createElement('div');
-        paramsDiv.innerHTML = '<h3>Parameters:</h3>';
-        
-        for (let [key, value] of params) {
-            paramsDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+        if (authCode) {
+            console.log('Authorization Code:', authCode);
+        }
+        if (state) {
+            console.log('State:', state);
         }
         
-        document.body.appendChild(paramsDiv);
+        // Log all parameters for debugging
+        console.log('All URL Parameters:', Object.fromEntries(urlParams));
+        
+        // Display parameters if any
+        if (urlParams.toString()) {
+            const debugDiv = document.createElement('div');
+            debugDiv.className = 'code';
+            debugDiv.innerHTML = '<strong>Debug Info:</strong><br>' + 
+                                'URL Parameters: ' + urlParams.toString();
+            document.querySelector('.container').appendChild(debugDiv);
+        }
     </script>
 </body>
 </html>
