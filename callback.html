@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngelOne Callback</title>
+</head>
+<body>
+    <h1>AngelOne API Callback</h1>
+    <p>Authentication successful!</p>
+    <script>
+        // Log the callback parameters
+        console.log('Callback received:', window.location.search);
+        
+        // Display parameters on page
+        const params = new URLSearchParams(window.location.search);
+        const paramsDiv = document.createElement('div');
+        paramsDiv.innerHTML = '<h3>Parameters:</h3>';
+        
+        for (let [key, value] of params) {
+            paramsDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
+        
+        document.body.appendChild(paramsDiv);
+    </script>
+</body>
+</html>
